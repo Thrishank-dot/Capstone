@@ -1,0 +1,12 @@
+.nav-exit { margin-top: auto; color: var(--accent-red); }
+.tab-active { display: block; }
+.tab-hidden { display: none; }
+.btn-execute { background: var(--accent-cyan); color: #000; border: none; padding: 4px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+.panel-scrollable { overflow-y: auto; }
+.tab-heading { font-family: 'JetBrains Mono', monospace; margin-bottom: 0; }
+.tab-subheading { color: #64748b; margin-top: 5px; }
+.panel-spaced { margin-top: 2rem; }
+.btn-refresh { background: transparent; color: #06b6d4; border: none; cursor: pointer; }
+.login-title { margin-top: 0; letter-spacing: 2px; }
+.login-subtitle { color: #64748b; font-size: 0.9rem; }
+.error-msg { color: #ef4444; margin-top: 15px; font-size: 0.8rem; height: 15px; }

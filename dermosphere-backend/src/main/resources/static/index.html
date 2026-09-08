@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Initializing</title>
+    <link rel="stylesheet" href="css/theme-medical.css">
+    <link rel="stylesheet" href="css/cinematic.css">
+</head>
+<body>
+
+    <!-- Phase 1: Loader -->
+    <div id="loader-screen">
+        <div class="medical-cross-core"></div>
+    </div>
+
+    <!-- Phase 2: Intro Sequence -->
+    <div id="intro-screen">
+        <h2 class="intro-title">Mapping the Dermal Topography...</h2>
+        <div class="load-container">
+            <div class="load-fill"></div>
+        </div>
+        <button class="skip-btn" id="skip-sequence-btn">Override Sequence</button>
+    </div>
+
+    <!-- Phase 3: Main Interface -->
+    <h1 id="vast-title" class="shift-up-animation">DermoSphere</h1>
+
+    <div class="humor-deck" id="interactive-deck">
+        
+        <!-- Registration Card -->
+        <div class="dialogue-card">
+            <div class="dialogue-text" id="text-signup">
+                Ah, a fresh face! Are you brand <span class="trigger-word" onclick="triggerReveal('signup')">new</span> to our diagnostic sphere, or did you just get lost looking for WebMD?
+            </div>
+            <button class="hidden-action-btn" id="btn-signup" onclick="window.location.href='signup.html'">Commence Registration</button>
+        </div>
+
+        <!-- Authentication Card -->
+        <div class="dialogue-card returning">
+            <div class="dialogue-text" id="text-login">
+                Welcome back, veteran! Ready to <span class="trigger-word" onclick="triggerReveal('login')">re-engage</span> the neural network, or just browsing your historical anomalies?
+            </div>
+            <button class="hidden-action-btn" id="btn-login" onclick="window.location.href='login.html'" style="background: var(--med-coral);">Authenticate</button>
+        </div>
+
+    </div>
+
+    <script src="js/orchestrator.js"></script>
+</body>
+</html>

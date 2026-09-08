@@ -1,0 +1,11 @@
+cat <<EOT > .gitignore
+venv/
+data/
+target/
+.DS_Store
+*.h5
+*.pkl
+*.onnx
+*.csv
+*.zip
+EOT

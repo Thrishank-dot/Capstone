@@ -1,0 +1,90 @@
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-clinical-white), #e0e7ea);
+}
+
+.auth-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-hard);
+    width: 100%;
+    max-width: 450px;
+    border-top: 6px solid var(--med-coral);
+}
+
+.auth-card.signup-mode {
+    border-top-color: var(--med-teal);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-core {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    transition: border-color 0.3s;
+    color: var(--text-primary);
+    box-sizing: border-box;
+}
+
+.input-core:focus {
+    outline: none;
+    border-color: var(--med-teal);
+}
+
+.stealth-field {
+    color: transparent;
+    caret-color: transparent;
+    text-shadow: none;
+}
+
+.stealth-field::selection {
+    background: transparent;
+    color: transparent;
+}
+
+.stealth-field.unmasked {
+    color: var(--text-primary);
+    caret-color: var(--text-primary);
+}
+
+.toggle-mask {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+    user-select: none;
+}
+
+.toggle-mask:hover {
+    filter: grayscale(0%);
+}
+
+#auth-message {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+}
+
+.auth-title { margin-bottom: 2rem; color: var(--med-teal-deep); text-align: center; }
+.captcha-group { display: flex; gap: 10px; align-items: center; }
+.captcha-canvas { border-radius: 8px; border: 1px solid #ccc; }
+.flex-grow { flex-grow: 1; }
+.btn-auth { width: 100%; font-size: 1.1rem; padding: 16px; }
+.btn-coral { background: var(--med-coral); }
+.auth-footer { text-align: center; margin-top: 1.5rem; }
+.auth-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }

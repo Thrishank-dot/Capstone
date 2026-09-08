@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Access</title>
+    <link rel="stylesheet" href="css/theme-medical.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="auth-title">Establish Connection</h2>
+            
+            <form id="secure-login-form">
+                <div class="input-group">
+                    <input type="text" id="auth-username" class="input-core letter-only-input" placeholder="Identifier (Letters Only)" required autocomplete="off">
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="auth-password" class="input-core" placeholder="Cryptographic Key (Invisible Entry)" autocomplete="off" required>
+                </div>
+                
+                <div class="input-group" class="captcha-group">
+                    <canvas id="captcha-canvas" width="120" height="50" class="captcha-canvas"></canvas>
+                    <input type="text" id="auth-captcha" class="input-core" placeholder="Verify CAPTCHA" required class="flex-grow">
+                </div>
+                
+                <button type="submit" class="btn-coral" >Authenticate Request</button>
+            </form>
+            <p id="auth-message"></p>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="signup.html"  class = "auth-link" >New terminal? Initialize profile here.</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth-manager.js"></script>
+</body>
+</html>

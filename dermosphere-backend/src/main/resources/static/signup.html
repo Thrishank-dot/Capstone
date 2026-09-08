@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Register</title>
+    <link rel="stylesheet" href="css/theme-medical.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card signup-mode">
+            <h2 class="auth-title">Initialize Profile</h2>
+            
+            <form id="secure-signup-form">
+                <div class="input-group">
+                    <input type="text" id="reg-username" class="input-core letter-only-input" placeholder="Username (Letters Only)" required autocomplete="off">
+                </div>
+                
+                <div class="input-group">
+                    <input type="email" id="reg-email" class="input-core" placeholder="Secure Comm Link (Email)" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-password-initial" class="input-core" placeholder="Construct Cryptographic Key" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-password-confirm" class="input-core" placeholder="Re-enter Key (Invisible Entry)" autocomplete="off" required>
+                 </div>
+                
+                <button type="submit" class="btn-auth" >Finalize Registration</button>
+            </form>
+            <p id="auth-message"></p>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="login.html" class="auth-link">Return to Authentication Node</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth-manager.js"></script>
+</body>
+</html>

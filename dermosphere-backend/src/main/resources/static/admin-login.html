@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Overlord Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="login-box">
+        <h2 class="login-title">ROOT_ACCESS</h2>
+        <p class="login-subtitle">Identify as System Administrator</p>
+        
+        <input type="text" id="admin-user" placeholder="Admin Identifier (Letters Only)" autocomplete="off" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+        <input type="password" id="admin-pass" placeholder="Master Key">
+        
+        <button onclick="attemptAdminAuth()">INITIALIZE</button>
+        <p id="error-msg" class="error-msg"></p>
+    </div>
+
+    <script>
+        async function attemptAdminAuth() {
+            const u = document.getElementById('admin-user').value;
+            const p = document.getElementById('admin-pass').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (!/^[a-zA-Z]+$/.test(u)) {
+                errorMsg.innerText = "ERR: Username must contain letters only.";
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/v1/auth/admin-login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: u, password: p })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    sessionStorage.setItem('dermoAuthToken', data.token);
+                    window.location.replace('admin-godmode.html');
+                } else {
+                    errorMsg.innerText = "ERR: Invalid Credentials or Clearance.";
+                }
+            } catch (err) {
+                errorMsg.innerText = "ERR: Authentication Service Offline.";
+            }
+        }
+        
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') attemptAdminAuth();
+        });
+    </script>
+</body>
+</html>

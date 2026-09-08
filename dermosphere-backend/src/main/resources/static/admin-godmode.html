@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Overlord Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="nav-icon active" onclick="switchTab('sql-tab', event)">SQL</div>
+        <div class="nav-icon" onclick="switchTab('matrix-tab', event)">VIZ</div>
+        <div class="nav-icon" onclick="switchTab('sec-tab', event)">SEC</div>
+        <div class="nav-icon nav-exit" onclick="logoutAdmin()">EXIT</div>
+    </div>
+
+    <div class="main-workspace">
+        
+        <!-- SQL WORKBENCH TAB -->
+        <div id="sql-tab" class="tab-active">
+            <div class="sql-workbench">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>> ROOT_TERMINAL // SQL_INJECTION_NODE</span>
+                        <button onclick="executeSQL()" class="btn-execute">EXECUTE</button>
+                    </div>
+                    <div class="editor-container">
+                        <div class="sql-highlighter" id="highlight-layer">SELECT * FROM users;</div>
+                        <textarea class="sql-textarea" id="sql-input" spellcheck="false" oninput="updateSyntax()">SELECT * FROM users;</textarea>
+                    </div>
+                </div>
+                
+                <div class="panel panel-scrollable">
+                    <div class="panel-header">
+                        <span>> OUTPUT_BUFFER</span>
+                        <button class="obfuscate-toggle" id="obfuscate-btn" onclick="toggleObfuscation()">Mask Data</button>
+                    </div>
+                    <table class="table-output" id="sql-results-table"></table>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATRIX TAB -->
+        <div id="matrix-tab" class="tab-hidden">
+            <h2 class="tab-heading">TELEMETRY_MATRIX_ARRAY</h2>
+            <p class="tab-subheading">Rendering 20 concurrent data streams via Chart.js WebGL backend.</p>
+            <div class="matrix-grid" id="chart-matrix"></div>
+        </div>
+
+        <!-- SECURITY CLEARANCE TAB -->
+        <div id="sec-tab" class="tab-hidden">
+            <h2 class="tab-heading">ACCESS_CONTROL_NODE</h2>
+            <p class="tab-subheading">Manage incoming clearance requests for the Restricted Metrics Vault.</p>
+            
+            <div class="panel panel-spaced">
+                <div class="panel-header">
+                    <span>> PENDING_REQUEST_QUEUE</span> 
+                    <button onclick="fetchPendingRequests()" class="btn-refresh">[REFRESH]</button>
+                </div>
+                <table class="table-output" id="clearance-table">
+                    <thead>
+                        <tr><th>USER_IDENTIFIER</th><th>REQUEST_STATUS</th><th>ACTION</th></tr>
+                    </thead>
+                    <tbody id="clearance-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/admin-workbench.js"></script>
+</body>
+</html>

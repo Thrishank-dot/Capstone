@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Welcome</title>
+    <link rel="stylesheet" href="css/cinematic.css">
+    <style>
+        @keyframes immersiveWelcome { 
+            0% { opacity: 0; transform: scale(0.85); filter: blur(10px); } 
+            20% { opacity: 1; transform: scale(1); filter: blur(0px); } 
+            80% { opacity: 1; transform: scale(1.05); filter: blur(0px); } 
+            100% { opacity: 0; transform: scale(1.1); filter: blur(5px); } 
+        }
+        @keyframes panBg { 0% { background-position: 0 0; } 100% { background-position: 400px 400px; } }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="welcome-body">
+        <h1>Welcome, <span id="display-name" class="name-highlight"></span>.</h1>
+        <div class="sub-text">Calibrating Diagnostic Interfaces...</div>
+    </div>
+
+    <script>
+        const storedName = sessionStorage.getItem('dermoUsername') || "Explorer";
+        document.getElementById('display-name').innerText = storedName;
+        
+        setTimeout(() => {
+            window.location.replace('app.html');
+        }, 5000);
+    </script>
+</body>
+</html>

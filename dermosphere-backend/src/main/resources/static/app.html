@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermoSphere | Portal</title>
+    <link rel="stylesheet" href="css/theme-medical.css">
+    <link rel="stylesheet" href="css/app-layout.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <nav class="nav-sidebar">
+            <div class="nav-brand">DermoSphere</div>
+            <button class="nav-btn active" onclick="routeTo('pane-home')"> Analysis Portal</button>
+            <button class="nav-btn" onclick="routeTo('pane-history')"> History Dashboard</button>
+            <button class="nav-btn" onclick="routeTo('pane-info')"> Input Constraints</button>
+            <button class="nav-btn danger" onclick="triggerLogout()"> Terminate Session</button>
+        </nav>
+
+        <!-- MAIN DYNAMIC CONTENT PANE -->
+        <main class="content-pane">
+            
+            <!-- MODULE 1: HOME (Inference Engine) -->
+            <section id="pane-home" class="pane-view active">
+                <div class="upload-card">
+                    <h2 class="upload-title">Dermatological Input Node</h2>
+                    <p class="upload-desc">
+                        Awaiting visual input. Verify image parameters via <a href="#" onclick="routeTo('pane-info')" class="text-link">Option 3</a> to ensure algorithmic accuracy.
+                    </p>
+                    
+                    <input type="file" id="lesion-upload" accept="image/jpeg, image/png" class="file-input">
+                    <button class="clinical-btn btn-large" onclick="initiateVisualScanSequence()">Initialize Neural Processing</button>
+                    
+                    <!-- Advanced Visual Processing Output -->
+                    <div id="processing-matrix" class="processing-matrix">
+                        <h4 id="status-readout" class="status-readout">> System Ready...</h4>
+                        
+                        <div class="scanner-viewport" id="scanner-box">
+                            <img id="scanner-preview" class="scanner-target-image" src="" alt="Scan Target">
+                            <div class="scanner-grid" id="scanner-grid"></div>
+                            <div class="scanner-laser" id="scanner-laser"></div>
+                        </div>
+                        
+                        <!-- Results Injector -->
+                        <div id="final-results" class="final-results">
+                            <h2 class="results-title">Diagnostic Output</h2>
+                            <p id="res-classification" class="res-classification"></p>
+                            <p id="res-accuracy" class="res-accuracy"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 2: DASHBOARD HISTORY -->
+            <section id="pane-history" class="pane-view">
+                <h2 class="section-title">Chronological Ledger</h2>
+                <p class="section-desc">Retaining maximum of 10 structural assessments. Click to expand.</p>
+                
+                <div id="history-container">
+                    <!-- Javascript populates history dynamically -->
+                </div>
+            </section>
+
+            <!-- MODULE 3: INFO & REQUIREMENTS -->
+            <section id="pane-info" class="pane-view">
+                <h2 class="section-title">Algorithmic Constraints</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card border-teal">
+                        <h3 class="info-heading">1. Illumination Quality</h3>
+                        <p class="text-success">✔ Correct: Diffused, ambient lighting.</p>
+                        <p class="text-danger">✘ Wrong: Harsh camera flash causing specular glare.</p>
+                    </div>
+                    <div class="info-card border-peach">
+                        <h3 class="info-heading">2. Spatial Resolution</h3>
+                        <p class="text-success">✔ Correct: Macro-lens, sharply focused.</p>
+                        <p class="text-danger">✘ Wrong: Digital zoom resulting in pixelation noise.</p>
+                    </div>
+                </div>
+                
+                <div class="validation-box">
+                    <h3 class="validation-heading">Pre-Flight Validation Check</h3>
+                    <p class="validation-desc">Upload an image strictly to test if it meets the resolution and lighting constraints before inference.</p>
+                    <input type="file" id="validation-file" accept="image/jpeg, image/png">
+                    
+                    <div id="validation-result" class="validation-result">
+                        <h4 class="validation-success">[SUCCESS] Topological parameters met.</h4>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/app-logic.js"></script>
+</body>
+</html>

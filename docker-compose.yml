@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # 1. The Database Layer
+  mysql-db:
+    image: mysql:8.0
+    container_name: dermosphere-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: dermosphere_db
+      MYSQL_ROOT_PASSWORD: yoursecurepassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - dermosphere-network
+
+  # 2. The Python AI Inference Microservice
+  ai-service:
+    build: 
+      context: ./dermosphere-ai-service
+      # Requires a standard Python Dockerfile in that directory (see note below)
+    container_name: dermosphere-ai
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./dermosphere-ai-service/static:/app/static
+      - ./dermosphere-ai-service/models:/app/models
+    networks:
+      - dermosphere-network
+
+  # 3. The Java Spring Boot Enterprise Gateway
+  backend-gateway:
+    build:
+      context: ./dermosphere-backend
+      # Requires a standard Java Dockerfile in that directory
+    container_name: dermosphere-backend
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/dermosphere_db?allowPublicKeyRetrieval=true&useSSL=false
+      - AI_MICROSERVICE_URL=http://ai-service:8000/api/v1/triage/predict
+    depends_on:
+      - mysql-db
+      - ai-service
+    networks:
+      - dermosphere-network
+
+volumes:
+  mysql_data:
+
+networks:
+  dermosphere-network:
+    driver: bridge
